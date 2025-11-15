@@ -1,0 +1,38 @@
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/sql"
+}
+
+model User {
+  id           Int      @id @default(autoincrement())
+  name         String
+  email        String   @unique
+  passwordHash String
+  role         String
+  orders       Orders[]
+}
+
+model Orders {
+  id        Int         @id @default(autoincrement())
+  userId    Int
+  total     Float
+  createdAt DateTime    @default(now())
+  user      User        @relation(fields: [userId], references: [id])
+  items     OrderItem[] // Relation to order items
+  @@index([userId])
+}
+
+model OrderItem {
+  id               Int    @id @default(autoincrement())
+  orderId          Int
+  productId        String
+  quantity         Int
+  priceAtPurchase  Float
+  order            Orders @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  @@index([orderId])
+}
