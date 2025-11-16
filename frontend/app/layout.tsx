@@ -5,8 +5,8 @@ import { CartProvider } from "../components/CartContext";
 import Header from "../components/Headers";
 
 export const metadata: Metadata = {
-  title: "E-Commerce App Test",
-  description: "A simple e-commerce application built with Next.js, TypeScript, Prisma, Mysql and MongoDB.",
+  title: "Harsh Mehta 202412048 E-Commerce App Test",
+  description: " Harsh Mehta 202412048 - A simple e-commerce application built with Next.js, TypeScript, Prisma, Mysql and MongoDB.",
 };
 
 export default function RootLayout({
